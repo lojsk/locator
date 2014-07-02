@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PageViewDemo/PageContentViewController.m"
-            timestampString = "425919114.018344"
+            filePath = "PageViewDemo/ViewController.m"
+            timestampString = "425931787.8974"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-scrollViewDidScroll:"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-viewControllerAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

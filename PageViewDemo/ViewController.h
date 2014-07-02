@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PageContentViewController.h"
+#import "SettingsContentViewController.h"
 
 @interface ViewController : UIViewController <UIPageViewControllerDataSource>
 

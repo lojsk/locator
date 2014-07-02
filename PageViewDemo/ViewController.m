@@ -20,11 +20,13 @@
 	// Create the data model
     _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
     
+    // first login
+    
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    PageContentViewController *startingViewController = (PageContentViewController*)[self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
@@ -37,6 +39,11 @@
     
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self presentViewController:login animated:NO completion:nil];
+}
+
 @synthesize mainScrollView, insideView;
 
 - (void)didReceiveMemoryWarning
@@ -46,22 +53,29 @@
 }
 
 - (IBAction)startWalkthrough:(id)sender {
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    PageContentViewController *startingViewController = (PageContentViewController*)[self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
 }
 
-- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (UIViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
         return nil;
     }
     
-    // Create a new view controller and pass suitable data.
-    PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    pageContentViewController.titleText = self.pageTitles[index];
-    pageContentViewController.pageIndex = index;
+    if(index > 0) {
+        // Create a new view controller and pass suitable data.
+        PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+        pageContentViewController.titleText = self.pageTitles[index];
+        pageContentViewController.pageIndex = index;
         
+        return pageContentViewController;
+    }
+    
+    // Create a new view controller and pass suitable data.
+    SettingsContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsContentViewController"];
+    
     return pageContentViewController;
 }
 
