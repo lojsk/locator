@@ -34,6 +34,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)addNewMap:(id)sender {
+    
+}
 
 /*
 #pragma mark - Navigation

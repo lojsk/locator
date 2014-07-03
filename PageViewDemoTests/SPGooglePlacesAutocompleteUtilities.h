@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Stephen Poletto. All rights reserved.
 //
 
-#define kGoogleAPIKey  @"AIzaSyAhPIjd75RFtmS3KQKSKUU17yD0tKgqubU" //@"AIzaSyDovqccAroKqZTh8vdUfwxWpImc2S_dMGw"
+#define kGoogleAPIKey  @"AIzaSyC0uotVt3zuPZ5onWvWY2gARNVQsiltufI" //@"AIzaSyDovqccAroKqZTh8vdUfwxWpImc2S_dMGw"
 #define kGoogleAPINSErrorCode 42
 
 @class CLPlacemark;

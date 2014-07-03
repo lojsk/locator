@@ -9,15 +9,23 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <Parse/Parse.h>
+#import "DataManager.h"
+#import "SPGooglePlacesAutocompletePlace.h"
+#import "SPGooglePlacesAutocompleteQuery.h"
+#import "ViewController.h"
 
-@interface PageContentViewController : UIViewController<UIScrollViewDelegate> {
-
+@interface PageContentViewController : UIViewController<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource> {
+    DataManager *dm;
+    NSArray *data;
+    SPGooglePlacesAutocompleteQuery *query;
 }
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property NSUInteger pageIndex;
 @property NSString *titleText;
+@property (weak, nonatomic) UIViewController *parent;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UIView *myInsideView;
-@property (weak, nonatomic) IBOutlet MKMapView *myMapView;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic) IBOutlet UITextField *mySearchInput;
 @property NSString *imageFile;
 @end

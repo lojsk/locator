@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @interface SettingsContentViewController : UIViewController
 
 @property NSUInteger pageIndex;
+@property (weak, nonatomic) UIViewController *parent;
 
 @end

@@ -64,7 +64,7 @@
     if (language) {
         [url appendFormat:@"&language=%@", language];
     }
-    if (country && ![country isEqualToString:@"btc"]) {
+    if (country) {
         [url appendFormat:@"&components=country:%@", country];
     }
     if (types != -1) {

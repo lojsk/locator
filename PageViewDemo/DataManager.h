@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface DataManager : NSObject
+@interface DataManager : NSObject <CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+}
+
++ (DataManager *)sharedInstance;
+
+@property CLLocationCoordinate2D location;
 
 @end

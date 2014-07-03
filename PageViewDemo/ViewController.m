@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
+
 @interface ViewController ()
 
 @end
@@ -17,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    dm = [DataManager sharedInstance];
+    
+    viewNumber = 2;
+    
 	// Create the data model
     _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
     
@@ -31,7 +37,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 608);
+    [self changeSubViewPosition:0];
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
@@ -40,8 +46,13 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self presentViewController:login animated:NO completion:nil];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[prefs valueForKey:@"phone"]);
+    
+    if(![prefs valueForKey:@"phone"]) {
+        UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:login animated:NO completion:nil];
+    }
 }
 
 @synthesize mainScrollView, insideView;
@@ -58,19 +69,24 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
 }
 
+- (void)changeSubViewPosition:(float)y {
+    self.pageViewController.view.frame = CGRectMake(0, y, self.view.frame.size.width, 608);
+}
+
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
+    if ((viewNumber == 0) || (index >= viewNumber)) {
         return nil;
     }
     
     if(index > 0) {
         // Create a new view controller and pass suitable data.
         PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-        pageContentViewController.titleText = self.pageTitles[index];
+       // pageContentViewController.titleText = self.pageTitles[index];
         pageContentViewController.pageIndex = index;
-        
+        pageContentViewController.parent = self;
         return pageContentViewController;
+        
     }
     
     // Create a new view controller and pass suitable data.

@@ -7,12 +7,12 @@
 //
 
 #import "SPGooglePlacesAutocompleteUtilities.h"
-#import "OCDataManager.h"
+#import "DataManager.h"
 
 @interface SPGooglePlacesPlaceDetailQuery : NSObject {
     NSURLConnection *googleConnection;
     NSMutableData *responseData;
-    OCDataManager *dataManager;
+    DataManager *dataManager;
 }
 
 @property (nonatomic, copy, readonly) SPGooglePlacesPlaceDetailResultBlock resultBlock;

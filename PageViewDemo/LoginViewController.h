@@ -10,8 +10,14 @@
 #import <Parse/Parse.h>
 #import "RMPhoneFormat.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController {
+    NSString *formattedNumber;
+}
+@property (weak, nonatomic) IBOutlet UITextField *prefixNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *codeNumberField;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *verificyButton;
+@property (weak, nonatomic) IBOutlet UIButton *resendSMSButton;
 
 @end
